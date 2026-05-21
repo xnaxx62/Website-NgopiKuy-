@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ngopi Skuy!</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins', sans-serif;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f6f1eb;
+      color:#333;
+    }
+
+    /* NAVBAR */
+    nav{
+      background:#3e2723;
+      padding:18px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:999;
+      box-shadow:0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    nav h2{
+      color:white;
+      font-size:30px;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:25px;
+      align-items:center;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+      font-weight:500;
+    }
+
+    nav ul li a:hover{
+      color:#ffcc80;
+    }
+
+    .cart-icon{
+      background:#d4a373;
+      padding:10px 18px;
+      border-radius:50px;
+      color:white;
+      font-weight:bold;
+    }
+
+    /* HERO */
+    .hero{
+      height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
+
+    .hero h1{
+      font-size:85px;
+      margin-bottom:15px;
+    }
+
+    .hero p{
+      font-size:24px;
+      margin-bottom:30px;
+    }
+
+    .hero button{
+      padding:15px 35px;
+      border:none;
+      border-radius:50px;
+      background:#d4a373;
+      color:white;
+      font-size:17px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .hero button:hover{
+      background:#b97c43;
+      transform:scale(1.05);
+    }
+
+    section{
+      padding:90px 8%;
+    }
+
+    .title{
+      text-align:center;
+      margin-bottom:50px;
+    }
+
+    .title h2{
+      font-size:50px;
+      color:#6f4e37;
+    }
+
+    /* ABOUT */
+    .about{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:50px;
+      align-items:center;
+    }
+
+    .about img{
+      width:100%;
+      border-radius:25px;
+      box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .about-text p{
+      line-height:1.9;
+      font-size:17px;
+    }
+
+    /* MENU */
+    .menu-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:30px;
+    }
+
+    .card{
+      background:white;
+      border-radius:25px;
+      overflow:hidden;
+      box-shadow:0 10px 25px rgba(0,0,0,0.1);
+      transition:0.3s;
+      position:relative;
+    }
+
+    .card:hover{
+      transform:translateY(-10px);
+    }
+
+    .card img{
+      width:100%;
+      height:230px;
+      object-fit:cover;
+    }
+
+    .badge{
+      position:absolute;
+      top:15px;
+      right:15px;
+      background:#ff9800;
+      color:white;
+      padding:8px 14px;
+      border-radius:30px;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .card-content{
+      padding:25px;
+      text-align:center;
+    }
+
+    .card-content h3{
+      margin-bottom:10px;
+      font-size:24px;
+    }
+
+    .card-content p{
+      color:#666;
+      margin-bottom:15px;
+      font-size:14px;
+    }
+
+    .price{
+      font-size:24px;
+      color:#b97c43;
+      font-weight:bold;
+      margin-bottom:20px;
+    }
+
+    .buy-btn{
+      background:#6f4e37;
+      color:white;
+      border:none;
+      padding:12px 25px;
+      border-radius:50px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    .buy-btn:hover{
+      background:#b97c43;
+    }
+
+    /* CART */
+    .cart{
+      margin-top:80px;
+      background:#fff3e6;
+      padding:40px;
+      border-radius:25px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .cart h2{
+      margin-bottom:25px;
+      color:#6f4e37;
+    }
+
+    .cart-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px 0;
+      border-bottom:1px solid #ddd;
+    }
+
+    .qty-btn{
+      background:#6f4e37;
+      color:white;
+      border:none;
+      width:30px;
+      height:30px;
+      border-radius:50%;
+      cursor:pointer;
+      font-weight:bold;
+    }
+
+    .qty-box{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .total{
+      margin-top:25px;
+      font-size:26px;
+      color:#b97c43;
+      font-weight:bold;
+    }
+
+    .pay-btn{
+      margin-top:25px;
+      background:#4caf50;
+      color:white;
+      border:none;
+      padding:14px 35px;
+      border-radius:50px;
+      cursor:pointer;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .pay-btn:hover{
+      background:#388e3c;
+    }
+
+    /* REVIEW */
+    .review-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .review-card{
+      background:white;
+      padding:30px;
+      border-radius:20px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .stars{
+      color:gold;
+      font-size:20px;
+      margin-bottom:15px;
+    }
+
+    .review-card h3{
+      margin-top:15px;
+      color:#b97c43;
+    }
+
+    /* CONTACT */
+    .contact{
+      background:#fff3e6;
+      border-radius:25px;
+      padding:60px 20px;
+      text-align:center;
+    }
+
+    .contact h2{
+      font-size:45px;
+      margin-bottom:20px;
+      color:#6f4e37;
+    }
+
+    .contact p{
+      margin-bottom:20px;
+      font-size:18px;
+    }
+
+    .ig-btn{
+      display:inline-block;
+      background:#e1306c;
+      color:white;
+      padding:15px 35px;
+      border-radius:50px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .ig-btn:hover{
+      background:#c2185b;
+    }
+
+    /* POPUP */
+    .popup{
+      position:fixed;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%) scale(0);
+      background:white;
+      width:330px;
+      padding:35px;
+      border-radius:25px;
+      text-align:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.3);
+      transition:0.3s;
+      z-index:1001;
+    }
+
+    .popup.active{
+      transform:translate(-50%,-50%) scale(1);
+    }
+
+    .popup button{
+      margin-top:20px;
+      padding:10px 25px;
+      border:none;
+      background:#6f4e37;
+      color:white;
+      border-radius:30px;
+      cursor:pointer;
+    }
+
+    .overlay{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:rgba(0,0,0,0.5);
+      display:none;
+      z-index:1000;
+    }
+
+    .overlay.active{
+      display:block;
+    }
+
+    footer{
+      background:#2d1b12;
+      color:white;
+      text-align:center;
+      padding:30px;
+      margin-top:50px;
+    }
+
+    @media(max-width:768px){
+
+      .hero h1{
+        font-size:55px;
+      }
+
+      nav{
+        flex-direction:column;
+        gap:15px;
+      }
+
+      nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+
+    <h2>☕ Ngopi Skuy!</h2>
+
+    <ul>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#review">Ulasan</a></li>
+      <li><a href="#contact">Kontak</a></li>
+
+      <li class="cart-icon">
+        🛒 <span id="cart-count">0</span>
+      </li>
+    </ul>
+
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div>
+
+      <h1>Ngopi Skuy!</h1>
+
+      <p>
+        Tempat Nongkrong Estetik Dengan Kopi Berkualitas ☕
+      </p>
+
+      <button onclick="document.getElementById('menu').scrollIntoView()">
+        Pesan Sekarang
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="title">
+      <h2>Latar Belakang</h2>
+    </div>
+
+    <div class="about">
+
+      <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1000&auto=format&fit=crop">
+
+      <div class="about-text">
+
+        <p>
+          Ngopi Skuy! hadir sebagai coffee shop modern untuk anak muda,
+          pekerja, maupun keluarga yang ingin menikmati suasana nyaman
+          dengan kopi berkualitas premium khas Indonesia.
+        </p>
+
+        <br>
+
+        <p>
+          Kami menghadirkan konsep estetik, pelayanan ramah,
+          musik santai, dan berbagai menu kopi maupun makanan ringan
+          yang cocok untuk menemani waktu nongkrong Anda.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MENU -->
+  <section id="menu">
+
+    <div class="title">
+      <h2>Menu Favorit</h2>
+    </div>
+
+    <div class="menu-container">
+
+      <!-- CARD -->
+      <div class="card">
+
+        <div class="badge">Best Seller</div>
+
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1000&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Espresso</h3>
+
+          <p>Kopi hitam dengan rasa kuat dan aroma khas.</p>
+
+          <div class="price">Rp18.000</div>
+
+          <button class="buy-btn"
+          onclick="tambahKeranjang('Espresso',18000)">
+            Tambah Keranjang
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1494314671902-399b18174975?q=80&w=1000&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Cappuccino</h3>
+
+          <p>Perpaduan espresso dan susu creamy.</p>
+
+          <div class="price">Rp25.000</div>
+
+          <button class="buy-btn"
+          onclick="tambahKeranjang('Cappuccino',25000)">
+            Tambah Keranjang
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <div class="badge">Favorit</div>
+
+        <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?q=80&w=1000&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>Latte</h3>
+
+          <p>Kopi susu creamy favorit pelanggan.</p>
+
+          <div class="price">Rp27.000</div>
+
+          <button class="buy-btn"
+          onclick="tambahKeranjang('Latte',27000)">
+            Tambah Keranjang
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- CARD -->
+      <div class="card">
+
+        <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1000&auto=format&fit=crop">
+
+        <div class="card-content">
+
+          <h3>French Fries</h3>
+
+          <p>Camilan gurih cocok untuk nongkrong.</p>
+
+          <div class="price">Rp20.000</div>
+
+          <button class="buy-btn"
+          onclick="tambahKeranjang('French Fries',20000)">
+            Tambah Keranjang
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- CART -->
+    <div class="cart">
+
+      <h2>🛒 Keranjang Belanja</h2>
+
+      <div id="cart-items">
+        <p>Keranjang masih kosong.</p>
+      </div>
+
+      <div class="total">
+        Total: Rp <span id="total">0</span>
+      </div>
+
+      <button class="pay-btn" onclick="bayar()">
+        Bayar Sekarang
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- REVIEW -->
+  <section id="review">
+
+    <div class="title">
+      <h2>Ulasan Pelanggan</h2>
+    </div>
+
+    <div class="review-container">
+
+      <div class="review-card">
+
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+
+        <p>
+          Tempatnya nyaman banget dan kopinya enak!
+        </p>
+
+        <h3>- Alif</h3>
+
+      </div>
+
+      <div class="review-card">
+
+        <div class="stars">⭐⭐⭐⭐⭐</div>
+
+        <p>
+          Interior cafe sangat estetik dan cocok buat foto.
+        </p>
+
+        <h3>- Niken</h3>
+
+      </div>
+
+      <div class="review-card">
+
+        <div class="stars">⭐⭐⭐⭐</div>
+
+        <p>
+          Pelayanan ramah dan harga terjangkau.
+        </p>
+
+        <h3>- Farhan</h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <div class="contact">
+
+      <h2>Kontak Person</h2>
+
+      <p>
+        Hubungi kami melalui Instagram untuk pemesanan
+        dan informasi lainnya ☕
+      </p>
+
+      <a
+      href="https://instagram.com/atharfariztaa_"
+      target="_blank"
+      class="ig-btn">
+
+        📸 @atharfariztaa_
+
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- POPUP -->
+  <div class="overlay" id="overlay"></div>
+
+  <div class="popup" id="popup">
+
+    <h2>🎉 Pembayaran Berhasil</h2>
+
+    <p>
+      Terima kasih sudah memesan di Ngopi Skuy!
+    </p>
+
+    <button onclick="tutupPopup()">
+      Tutup
+    </button>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <h2>☕ Ngopi Skuy!</h2>
+
+    <p>
+      Tempat nongkrong terbaik dengan kopi berkualitas premium.
+    </p>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    let cart = {};
+
+    function tambahKeranjang(nama, harga){
+
+      if(!cart[nama]){
+
+        cart[nama] = {
+          harga: harga,
+          qty: 1
+        };
+
+      } else {
+
+        cart[nama].qty++;
+
+      }
+
+      renderCart();
+
+    }
+
+    function tambahQty(nama){
+
+      cart[nama].qty++;
+
+      renderCart();
+
+    }
+
+    function kurangQty(nama){
+
+      cart[nama].qty--;
+
+      if(cart[nama].qty <= 0){
+
+        delete cart[nama];
+
+      }
+
+      renderCart();
+
+    }
+
+    function renderCart(){
+
+      let cartItems =
+      document.getElementById("cart-items");
+
+      let total = 0;
+      let jumlah = 0;
+
+      cartItems.innerHTML = "";
+
+      for(let nama in cart){
+
+        let item = cart[nama];
+
+        total += item.harga * item.qty;
+
+        jumlah += item.qty;
+
+        cartItems.innerHTML += `
+
+          <div class="cart-item">
+
+            <div>
+
+              <h4>${nama}</h4>
+
+              <p>
+                Rp ${item.harga.toLocaleString("id-ID")}
+              </p>
+
+            </div>
+
+            <div class="qty-box">
+
+              <button class="qty-btn"
+              onclick="kurangQty('${nama}')">
+                -
+              </button>
+
+              <span>${item.qty}</span>
+
+              <button class="qty-btn"
+              onclick="tambahQty('${nama}')">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+      if(jumlah === 0){
+
+        cartItems.innerHTML =
+        "<p>Keranjang masih kosong.</p>";
+
+      }
+
+      document.getElementById("cart-count").innerHTML =
+      jumlah;
+
+      document.getElementById("total").innerHTML =
+      total.toLocaleString("id-ID");
+
+    }
+
+    function bayar(){
+
+      if(Object.keys(cart).length === 0){
+
+        alert("Keranjang masih kosong!");
+
+      } else {
+
+        document.getElementById("popup")
+        .classList.add("active");
+
+        document.getElementById("overlay")
+        .classList.add("active");
+
+      }
+
+    }
+
+    function tutupPopup(){
+
+      document.getElementById("popup")
+      .classList.remove("active");
+
+      document.getElementById("overlay")
+      .classList.remove("active");
+
+      cart = {};
+
+      renderCart();
+
+    }
+
+  </script>
+
+</body>
+</html>
