@@ -8,6 +8,171 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== EFFECT TAMBAHAN ===== */
+
+/* Gradient background */
+body{
+  background:
+  linear-gradient(to bottom, #fdf8f3, #f6f1eb);
+}
+
+/* NAVBAR GLASS */
+nav{
+  backdrop-filter: blur(10px);
+  background: rgba(62,39,35,0.92);
+  border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+/* LOGO EFFECT */
+nav h2{
+  letter-spacing:1px;
+  text-shadow:0 0 10px rgba(255,255,255,0.3);
+}
+
+/* HERO ANIMATION */
+.hero h1{
+  animation: fadeUp 1s ease;
+  text-shadow:0 5px 20px rgba(0,0,0,0.4);
+}
+
+.hero p{
+  animation: fadeUp 1.3s ease;
+}
+
+.hero button{
+  box-shadow:0 10px 25px rgba(212,163,115,0.4);
+}
+
+/* BUTTON GLOW */
+.buy-btn,
+.pay-btn,
+.ig-btn,
+.hero button{
+  transition:0.3s ease;
+}
+
+.buy-btn:hover,
+.pay-btn:hover,
+.ig-btn:hover,
+.hero button:hover{
+  transform:translateY(-3px) scale(1.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+}
+
+/* CARD GLASS EFFECT */
+.card{
+  background:rgba(255,255,255,0.8);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.4);
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* IMAGE ZOOM */
+.card img{
+  transition:0.5s;
+}
+
+.card:hover img{
+  transform:scale(1.08);
+}
+
+/* TITLE STYLE */
+.title h2{
+  position:relative;
+  display:inline-block;
+}
+
+.title h2::after{
+  content:"";
+  width:70%;
+  height:4px;
+  background:#d4a373;
+  position:absolute;
+  left:15%;
+  bottom:-10px;
+  border-radius:10px;
+}
+
+/* REVIEW CARD */
+.review-card{
+  transition:0.3s;
+}
+
+.review-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* CART STYLE */
+.cart{
+  border:2px dashed #d4a373;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{
+  width:10px;
+}
+
+::-webkit-scrollbar-track{
+  background:#f1e7dc;
+}
+
+::-webkit-scrollbar-thumb{
+  background:#b97c43;
+  border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+  background:#8d5d32;
+}
+
+/* POPUP ANIMATION */
+.popup{
+  animation-duration:0.4s;
+}
+
+.popup.active{
+  animation:popupShow 0.4s ease;
+}
+
+/* FOOTER */
+footer{
+  background:
+  linear-gradient(to right,#2d1b12,#4e342e);
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
+
+  from{
+    opacity:0;
+    transform:translateY(30px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+@keyframes popupShow{
+
+  from{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(0.5);
+  }
+
+  to{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+  }
+
+}
 
     *{
       margin:0;
@@ -649,7 +814,7 @@
           Pelayanan ramah dan harga terjangkau.
         </p>
 
-        <h3>- Erlan</h3>
+        <h3>- Evos Erlan</h3>
 
       </div>
 
